@@ -46,7 +46,7 @@ if [ $USE_EVENTS = true ]; then
   docker run -d --restart=always \
     --name taiga-events \
     --link taiga-rabbit:rabbit \
-    benhutchins/taiga-events
+    seanocat/taiga-events
 
   sleep 10
 

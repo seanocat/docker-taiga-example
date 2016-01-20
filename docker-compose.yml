@@ -16,7 +16,7 @@ celery:
     - rabbit
 
 events:
-  image: benhutchins/taiga-events
+  image: seanocat/taiga-events
   links:
     - rabbit
 
