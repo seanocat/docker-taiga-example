@@ -1,4 +1,34 @@
-# Example Taiga Setup
+# About
+
+## How to use
+
+For testing purpose, it's quite simple to run this image as below.
+
+<blockquote>
+$ TAIGA_HOSTNAME=taiga.example.com ./start.sh --with-events
+</blockquote>
+
+## Production environment
+
+For production, persistence and reverse proxy setup might be required.
+
+### Enabling persistence
+
+Edit 'start.sh' and look for keyword 'persistence'.
+
+### SSL-terminated reverse proxy setup
+
+Example configuration files have been included in the 'apache-conf' directory.
+
+<blockquote>
+$ cp ./apache-conf/taiga.example.com.conf /etc/apache2/sites-available
+$ cp ./apache-conf/taiga.example.com_ssl.conf /etc/apache2/sites-available
+$ a2ensite taiga.example.com
+$ a2ensite taiga.example.com_ssl
+$ service apache2 restart
+</blockquote>
+
+# Original README.md from [benhutchins/docker-taiga-example](https://github.com/benhutchins/docker-taiga-example)
 
 This project serves as an example demonstrating how to use [benhutchins/docker-taiga](https://github.com/benhutchins/docker-taiga). Please see that project for more details.
 
