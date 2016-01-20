@@ -1,4 +1,4 @@
-FROM seanocat/taiga
+FROM seanocat/docker-taiga
 MAINTAINER seanocat <seanocat@gmail.com>
 
 # Install additional extensions
