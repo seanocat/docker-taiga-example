@@ -1,5 +1,5 @@
-FROM benhutchins/taiga
-MAINTAINER Benjamin Hutchins <ben@hutchins.co>
+FROM seanocat/taiga
+MAINTAINER seanocat <seanocat@gmail.com>
 
 # Install additional extensions
 RUN pip install --no-cache-dir \

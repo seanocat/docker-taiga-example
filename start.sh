@@ -20,12 +20,12 @@ fi
 
 docker build -t mytaiga .
 
+  # use options below to have persistence.
+  # -e PGDATA=/var/lib/postresql/data/pgdata \
+  # -v /srv/taiga/pgdata:/var/lib/postresql/data/pgdata \
 docker run -d --restart=always \
   --name taiga-postgres \
   -e POSTGRES_PASSWORD=password \
-  # uncomment below to have persistence.
-  # -e PGDATA=/var/lib/postresql/data/pgdata \
-  # -v /srv/taiga/pgdata:/var/lib/postresql/data/pgdata \
   postgres
 
 if [ $USE_EVENTS = true ]; then
@@ -50,6 +50,8 @@ if [ $USE_EVENTS = true ]; then
 
   sleep 10
 
+  # use options below to have persistence.
+  # -v /srv/taiga/media:/usr/src/taiga-back/media \
   docker run -itd --restart=always \
     --name taiga \
     --link taiga-postgres:postgres \
@@ -58,19 +60,17 @@ if [ $USE_EVENTS = true ]; then
     --link taiga-events:events \
     -e TAIGA_HOSTNAME=$TAIGA_HOSTNAME \
     -e TAIGA_EVENTS=True \
-    # uncomment below to have persistence.
-    # -v /srv/taiga/media:/usr/src/taiga-back/media \
     -p 80:80 \
     mytaiga
 else
   sleep 10
 
+  # use options below to have persistence.
+  # -v /srv/taiga/media:/usr/src/taiga-back/media \
   docker run -itd --restart=always \
     --name taiga \
     --link taiga-postgres:postgres \
     -e TAIGA_HOSTNAME=$TAIGA_HOSTNAME \
-    # uncomment below to have persistence.
-    # -v /srv/taiga/media:/usr/src/taiga-back/media \
     -p 80:80 \
     mytaiga
 fi

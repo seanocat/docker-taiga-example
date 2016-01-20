@@ -5,7 +5,7 @@
 For testing purpose, it's quite simple to run this image as below.
 
 <blockquote>
-$ TAIGA_HOSTNAME=taiga.example.com ./start.sh --with-events
+$ TAIGA_HOSTNAME=taiga.example.com ./start.sh --with-events<br/>
 </blockquote>
 
 ## Production environment
@@ -21,11 +21,29 @@ Edit 'start.sh' and look for keyword 'persistence'.
 Example configuration files have been included in the 'apache-conf' directory.
 
 <blockquote>
-$ cp ./apache-conf/taiga.example.com.conf /etc/apache2/sites-available
-$ cp ./apache-conf/taiga.example.com_ssl.conf /etc/apache2/sites-available
-$ a2ensite taiga.example.com
-$ a2ensite taiga.example.com_ssl
-$ service apache2 restart
+$ cp ./apache-conf/taiga.example.com.conf /etc/apache2/sites-available<br/>
+$ cp ./apache-conf/taiga.example.com_ssl.conf /etc/apache2/sites-available<br/>
+$ a2ensite taiga.example.com<br/>
+$ a2ensite taiga.example.com_ssl<br/>
+$ service apache2 restart<br/>
+</blockquote>
+
+Also, edit 'start.sh' to add 'TAIGA_SSL' option.
+
+<blockquote>
+$ vi start.sh<br/>
+  # look up 'mytaiga'.<br/>
+  docker run -itd --restart=always \<br/>
+    --name taiga \<br/>
+    --link taiga-postgres:postgres \<br/>
+    --link taiga-redis:redis \<br/>
+    --link taiga-rabbit:rabbit \<br/>
+    --link taiga-events:events \<br/>
+    -e TAIGA_HOSTNAME=$TAIGA_HOSTNAME \<br/>
+    -e TAIGA_EVENTS=True \<br/>
+    -e TAIGA_SSL=True \<br/>
+    -p 80:80 \<br/>
+    mytaiga<br/>
 </blockquote>
 
 # Original README.md from [benhutchins/docker-taiga-example](https://github.com/benhutchins/docker-taiga-example)
