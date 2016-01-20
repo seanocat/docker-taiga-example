@@ -6,7 +6,7 @@ RUN pip install --no-cache-dir \
       taiga-contrib-slack \
       taiga-contrib-ldap-auth
 
-COPY slack.js /usr/src/taiga-front-dist/dist/js/slack.js
+ADD slack /usr/src/taiga-front-dist/dist/plugins/slack
 
 COPY taiga-conf/local.py /taiga/local.py
 COPY taiga-conf/conf.json /taiga/conf.json

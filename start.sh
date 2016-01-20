@@ -4,9 +4,9 @@ if [ "$1" = "--with-events" ]; then
   USE_EVENTS=true
 fi
 
-if [ ! -e "slack.js" ]; then
-  # Download slack.js from https://github.com/taigaio/taiga-contrib-slack
-  wget https://github.com/taigaio/taiga-contrib-slack/raw/master/front/dist/slack.js
+if [ ! -e "slack" ]; then
+  # Download slack from https://github.com/taigaio/taiga-contrib-slack
+  svn export "https://github.com/taigaio/taiga-contrib-slack/tags/$(yolk -V taiga-contrib-slack | awk '/^taiga-contrib-slack /{print $2}')/front/dist" "slack"
 fi
 
 if [ -z "$TAIGA_HOSTNAME" ]; then
