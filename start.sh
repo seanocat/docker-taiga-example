@@ -50,7 +50,8 @@ if [ $USE_EVENTS = true ]; then
 
   sleep 10
 
-  # use options below to have persistence.
+  # use options below for production setup (enable reverse proxy & persistence).
+  # -e TAIGA_SSL=True \
   # -v /srv/taiga/media:/usr/src/taiga-back/media \
   docker run -itd --restart=always \
     --name taiga \
